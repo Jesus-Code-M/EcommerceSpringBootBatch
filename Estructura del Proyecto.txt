@@ -1,0 +1,56 @@
+src
+ └── main
+     └── java
+         └── ecommerce_springbootbatch
+			 └── springbatch
+				 └── ordersbatch
+					 └── jobs
+					 └── processors
+					 └── readers
+						 └── OrderItemProcessor.java
+						 └── OrderItemReader.java
+						 └── OrderItemWriter.java
+					 └── wrerites
+					 └── OrderBatchConfig.java
+				 └── productsbatch
+					 └── jobsproducts
+					 └── listenersproducts
+					 └── processorsproducts
+					 └── readersproducts
+					 └── wirtersproducts
+					 └── ProductBatchConfig.java
+             └── springboot
+                 └── config
+					 └── SecurityConfig.java
+					 └── SwaggerConfig.java
+                 └── ordersboot
+					 └── controllerorders
+						 └── OrderController.java
+					 └── elasticsearchorder
+						 └── OrderDocument.java - @Document(indexName = "products")
+					 └── entityorders
+						 └── Order.java
+					 └── repositoryorders
+						 └── OrderElasticsearchRepository.java
+						 └── OrderJpaRepository.java
+					 └── serviceorders
+						 └── OrderService.java - Clase para configurar las métricas en prometheus y grafana.
+                 └── productsboot
+					 └── controllerproducts
+						 └── JobReportController.java
+						 └── ProductoController.java
+					 └── elasticsearchproduct
+						 └── ProductDocument.java - @Document(indexName = "orders")
+					 └── entityproducts
+						 └── Product.java
+					 └── repositoryproducts
+						 └── ProductElasticsearchRepository.java
+						 └── ProductJpaRepository.java
+					 └── serviceproducts
+						 └── ProductService.java - Clase para configurar las métricas en prometheus y grafana.
+				 └── testboot
+                     └── TestController.java
+				 └── BatchController.java
+				 └── EcommerceService.java
+				 └── ElasticsearchService.java
+			 └── EcommerceSpringBootBatch.java

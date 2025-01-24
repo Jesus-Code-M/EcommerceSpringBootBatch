@@ -1,0 +1,90 @@
+{
+  "uid": "ecommerce-dashboard",
+  "title": "Ecommerce Spring Boot Batch Dashboard",
+  "tags": ["ecommerce", "springboot", "batch", "monitoring"],
+  "timezone": "browser",
+  "schemaVersion": 26,
+  "version": 2,
+  "panels": [
+    {
+      "title": "Database Operations - Insert/Update/Delete Counts",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "sum by (operation) (rate(sql_operations_total[1m]))",
+          "legendFormat": "Operation: {{operation}}",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
+      "id": 1
+    },
+    {
+      "title": "Spring Boot Endpoints - Request Counts",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "sum by (method, uri) (rate(http_server_requests_seconds_count[1m]))",
+          "legendFormat": "{{method}} {{uri}}",
+          "refId": "B"
+        }
+      ],
+      "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8},
+      "id": 2
+    },
+    {
+      "title": "Spring Batch Jobs - Execution Times",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "sum by (job_name) (rate(spring_batch_job_seconds_sum[1m]))",
+          "legendFormat": "Job: {{job_name}}",
+          "refId": "C"
+        }
+      ],
+      "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8},
+      "id": 3
+    },
+    {
+      "title": "Application Health - Threads, CPU, Memory",
+      "type": "graph",
+      "targets": [
+        {
+          "expr": "jvm_threads_live{application='ecommerce_springbootbatch'}",
+          "legendFormat": "Live Threads",
+          "refId": "D"
+        },
+        {
+          "expr": "process_cpu_usage{application='ecommerce_springbootbatch'}",
+          "legendFormat": "CPU Usage",
+          "refId": "E"
+        },
+        {
+          "expr": "jvm_memory_used_bytes{application='ecommerce_springbootbatch',area='heap'}",
+          "legendFormat": "Heap Memory Used",
+          "refId": "F"
+        }
+      ],
+      "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8},
+      "id": 4
+    },
+    {
+      "title": "Alerts - Job Failures and High Response Times",
+      "type": "table",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_sum[1m]) > 0.5",
+          "legendFormat": "High Response Time: {{uri}}",
+          "refId": "G"
+        },
+        {
+          "expr": "spring_batch_job_failed_total{application='ecommerce_springbootbatch'} > 0",
+          "legendFormat": "Failed Jobs: {{job_name}}",
+          "refId": "H"
+        }
+      ],
+      "gridPos": {"x": 0, "y": 16, "w": 24, "h": 8},
+      "id": 5
+    }
+  ]
+}
