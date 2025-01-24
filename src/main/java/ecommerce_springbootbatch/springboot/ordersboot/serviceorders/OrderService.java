@@ -1,4 +1,4 @@
-package com.spring1.springweb1.serviceorders;
+package ecommerce_springbootbatch.springboot.ordersboot.serviceorders;
 
 import ecommerce_springbootbatch.springboot.ordersboot.entityorders.Order;
 import ecommerce_springbootbatch.springboot.ordersboot.repositoryorders.OrderJpaRepository;
